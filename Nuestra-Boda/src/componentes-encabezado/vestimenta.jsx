@@ -1,171 +1,402 @@
+
 import React from "react";
 import { motion } from "framer-motion";
+import { Sparkles, Award } from "lucide-react";
+
+// ==========================================
+// MENSAJE CORPORATIVO - JET VAN
+// ==========================================
+
+const mensaje = {
+  encabezado: "Un momento para reconocer",
+  titulo: "Un año de logros",
+  destacado: "compartidos",
+
+  parrafo1:
+    "Cada logro alcanzado durante este año ha sido posible gracias al compromiso, la dedicación y el esfuerzo de quienes forman parte de Jet Van.",
+
+  parrafo2:
+    "Hoy queremos reconocer el trabajo que nos impulsa a seguir creciendo y agradecer a cada integrante de nuestro equipo por ser parte fundamental de este camino.",
+
+  parrafo3:
+    "Los invitamos a compartir un momento especial para celebrar lo que hemos construido juntos y mirar con entusiasmo hacia nuevos desafíos.",
+
+  cierre:
+    "Porque nuestro mayor impulso es nuestra gente.",
+};
+
+// ==========================================
+// ANIMACIONES
+// ==========================================
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.85,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+// ==========================================
+// COMPONENTE PRINCIPAL
+// ==========================================
 
 const Vestimenta = () => {
-
-  const fadeUp = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
-
   return (
-    <div className="w-full bg-[#F7F4ED] py-2 px-0 flex items-center justify-center overflow-hidden">
+    <section
+      id="mensaje-corporativo"
+      className="
+        relative
+        flex w-full
+        items-center justify-center
+        overflow-hidden
+        bg-white
+        px-5 py-20
+        sm:px-8 sm:py-28
+      "
+      style={{
+        fontFamily: "'Montserrat', sans-serif",
+      }}
+    >
+      {/* =====================================
+          TARJETA PRINCIPAL AZUL MARINO
+      ===================================== */}
 
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.15 }}
         className="
-          relative max-w-6xl w-full
-          bg-white
-          rounded-tl-[3rem] sm:rounded-tl-[4rem]
-          rounded-br-[3rem] sm:rounded-br-[4rem]
-          rounded-tr-[1rem]
-          rounded-bl-[1rem]
-          shadow-[0_15px_50px_rgba(0,0,0,0.12)]
+          relative z-10
+          grid w-full max-w-6xl
+          grid-cols-1 lg:grid-cols-2
           overflow-hidden
-          grid grid-cols-1 lg:grid-cols-2
+          rounded-[2rem]
+          border border-[#D9B56D]/40
+          bg-[#07182F]
+          shadow-[0_20px_70px_rgba(0,0,0,0.20)]
         "
       >
+        {/* =====================================
+            COLUMNA IZQUIERDA - IMAGEN
+        ===================================== */}
 
-        {/* IMAGEN */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
+          initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.9 }}
           viewport={{ once: true }}
           className="
             relative
-            h-[280px]
-            sm:h-[420px]
-            md:h-[500px]
-            lg:h-full
-            min-h-[300px]
+            min-h-[330px]
+            overflow-hidden
+            sm:min-h-[440px]
+            lg:min-h-full
           "
         >
-
+          {/* FOTOGRAFÍA GRUPAL */}
           <img
-            src="/dress-code2.png"
-            alt="Vestimenta"
+            src="/grupal.png"
+            alt="Imagen ilustrativa de un equipo corporativo Jet Van"
             className="
-              w-full h-full
-              object-cover
-              object-center
+              absolute inset-0
+              h-full w-full
+              object-cover object-center
             "
           />
 
-          {/* Overlay elegante */}
-          <div className="absolute inset-0 bg-black/10"></div>
+          {/* OVERLAY AZUL MARINO */}
+          <div
+            className="
+              absolute inset-0
+              bg-gradient-to-t
+              from-[#06172E]
+              via-[#06172E]/30
+              to-transparent
+            "
+          />
 
+          {/* MARCO DECORATIVO */}
+          <div
+            className="
+              absolute inset-5
+              rounded-xl
+              border border-[#E8C67D]/40
+              sm:inset-8
+            "
+          />
+
+          {/* DECORACIÓN SUPERIOR */}
+          <div
+            className="
+              absolute
+              left-1/2 top-10
+              flex -translate-x-1/2
+              items-center gap-3
+              text-[#E8C67D]
+            "
+          >
+            <span className="h-px w-10 bg-[#E8C67D]/70" />
+
+            <Sparkles
+              size={19}
+              strokeWidth={1.4}
+            />
+
+            <span className="h-px w-10 bg-[#E8C67D]/70" />
+          </div>
+
+          {/* TEXTO SOBRE LA IMAGEN */}
+          <div
+            className="
+              absolute
+              bottom-12 left-8 right-8
+              text-center
+              sm:bottom-16
+            "
+          >
+            <p
+              className="
+                text-xs font-medium
+                uppercase
+                tracking-[0.35em]
+                text-[#E8C67D]
+              "
+            >
+              Jet Van
+            </p>
+
+            <h3
+              className="
+                mt-3
+                text-4xl sm:text-5xl
+                font-medium italic
+                text-white
+              "
+              style={{
+                fontFamily:
+                  "'Cormorant Garamond', serif",
+              }}
+            >
+              Celebramos juntos
+            </h3>
+
+            <p
+              className="
+                mt-3
+                text-xs sm:text-sm
+                tracking-[0.2em]
+                text-[#F1E9DA]
+              "
+            >
+              FIESTA DE FIN DE AÑO 2026
+            </p>
+          </div>
         </motion.div>
 
-        {/* TEXTO */}
+        {/* =====================================
+            COLUMNA DERECHA - MENSAJE
+        ===================================== */}
+
         <div
           className="
-            flex flex-col items-center justify-center
+            relative
+            flex flex-col
+            items-center justify-center
+            bg-[#07182F]
+            px-7 py-14
             text-center
-            p-8
-            sm:p-12
-            lg:p-16
+            sm:px-12 sm:py-16
+            lg:px-14 lg:py-20
           "
         >
-
-          <motion.p
-            initial={{ opacity: 0, letterSpacing: "0.5em" }}
-            whileInView={{ opacity: 1, letterSpacing: "0.2em" }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
+          {/* LÍNEA DORADA SUPERIOR */}
+          <div
             className="
-              uppercase
-              text-[11px]
-              sm:text-sm
-              tracking-[0.2em]
-              text-[#B89B5E]
-              font-semibold
+              absolute
+              left-1/2 top-0
+              h-[3px] w-32
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E8C67D]
+              to-transparent
             "
-          >
-            Código de Vestimenta
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="
-              text-3xl
-              sm:text-4xl
-              md:text-5xl
-              lg:text-6xl
-              font-playfair
-              text-black
-              mt-5
-              leading-tight
-            "
-          >
-            Vestimenta Formal
-          </motion.h1>
-
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "6rem" }}
-            transition={{ duration: 1, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="h-[2px] bg-[#B89B5E] mt-6"
           />
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            viewport={{ once: true }}
-            className="
-              mt-6 sm:mt-8
-              text-base
-              sm:text-lg
-              md:text-xl
-              text-black/70
-              leading-relaxed
-              max-w-md
-              font-[DancingScript]
-            "
-          >
-            Queremos compartir contigo una noche elegante y especial.
-            Te invitamos a asistir con vestimenta formal para celebrar
-            juntos este momento inolvidable.
-          </motion.p>
-
-          {/* FRASE */}
+          {/* ICONO */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
             className="
-              mt-8 sm:mt-10
-              text-[#B89B5E]
-              text-xs sm:text-sm
-              tracking-[0.2em]
-              text-center
+              mb-6
+              flex h-16 w-16
+              items-center justify-center
+              rounded-full
+              border border-[#D9B56D]/50
+              bg-[#D9B56D]/10
             "
           >
-            ✦ Elegancia • Glamour • Celebración ✦
+            <Award
+              size={29}
+              strokeWidth={1.3}
+              className="text-[#E8C67D]"
+            />
           </motion.div>
 
-        </div>
+          {/* ENCABEZADO */}
+          <motion.p
+            variants={fadeUp}
+            className="
+              text-[10px] sm:text-xs
+              font-semibold
+              uppercase
+              tracking-[0.25em]
+              text-[#E8C67D]
+            "
+          >
+            {mensaje.encabezado}
+          </motion.p>
 
+          {/* TÍTULO */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-5"
+            style={{
+              fontFamily:
+                "'Cormorant Garamond', serif",
+            }}
+          >
+            <h2
+              className="
+                text-4xl sm:text-5xl lg:text-6xl
+                font-medium
+                leading-[1.05]
+                text-white
+              "
+            >
+              {mensaje.titulo}
+            </h2>
+
+            <p
+              className="
+                mt-1
+                text-4xl sm:text-5xl lg:text-6xl
+                font-medium italic
+                leading-tight
+                text-[#E8C67D]
+              "
+            >
+              {mensaje.destacado}
+            </p>
+          </motion.div>
+
+          {/* DIVISOR */}
+          <motion.div
+            variants={fadeUp}
+            className="my-8 flex items-center gap-3"
+          >
+            <span className="h-px w-12 bg-[#D9B56D]/70" />
+
+            <span
+              className="
+                h-2 w-2
+                rotate-45
+                border border-[#D9B56D]
+              "
+            />
+
+            <span className="h-px w-12 bg-[#D9B56D]/70" />
+          </motion.div>
+
+          {/* PÁRRAFOS */}
+          <motion.div
+            variants={fadeUp}
+            className="
+              flex max-w-md
+              flex-col gap-5
+              text-sm sm:text-[15px]
+              font-light
+              leading-7 sm:leading-8
+              text-[#EDE6D9]
+            "
+          >
+            <p>{mensaje.parrafo1}</p>
+            <p>{mensaje.parrafo2}</p>
+            <p>{mensaje.parrafo3}</p>
+          </motion.div>
+
+          {/* MENSAJE FINAL */}
+          <motion.div
+            variants={fadeUp}
+            className="
+              mt-9
+              w-full max-w-md
+              border-t border-[#D9B56D]/35
+              pt-8
+            "
+          >
+            <p
+              className="
+                text-2xl sm:text-3xl
+                font-medium italic
+                leading-relaxed
+                text-[#E8C67D]
+              "
+              style={{
+                fontFamily:
+                  "'Cormorant Garamond', serif",
+              }}
+            >
+              {mensaje.cierre}
+            </p>
+          </motion.div>
+
+          {/* FIRMA */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-9 flex items-center gap-3"
+          >
+            <span className="h-px w-8 bg-[#D9B56D]/70" />
+
+            <span
+              className="
+                text-[11px]
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-[#E8C67D]
+              "
+            >
+              Jet Van · 2026
+            </span>
+
+            <span className="h-px w-8 bg-[#D9B56D]/70" />
+          </motion.div>
+
+          {/* LÍNEA DORADA INFERIOR */}
+          <div
+            className="
+              absolute
+              bottom-0 left-1/2
+              h-[3px] w-32
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E8C67D]
+              to-transparent
+            "
+          />
+        </div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

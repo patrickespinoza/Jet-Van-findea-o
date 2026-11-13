@@ -3,42 +3,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   MapPin,
-  Clock3,
-  Church,
-  Wine,
   ArrowUpRight,
-  CalendarDays,
+  Navigation,
+  Sparkles,
+  Building2,
 } from "lucide-react";
 
 // ==========================================
-// INFORMACIÓN EDITABLE - WEDLY
+// INFORMACIÓN EDITABLE - WEDLY / JET VAN
 // ==========================================
 
-// FECHA DE LA CELEBRACIÓN
-const fechaCelebracion = {
-  dia: "Jueves",
-  fecha: "11",
-  mesAnio: "Junio 2026",
-};
-
-// CEREMONIA
-const ceremonia = {
-  titulo: "Ceremonia",
-  hora: "4:30 PM",
-  lugar: "Salón Event Center",
-  direccion: "Puebla, Puebla",
-  ubicacion: "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
-  icono: Church,
-};
-
-// RECEPCIÓN
-const recepcion = {
-  titulo: "Recepción",
-  hora: "8:00 PM",
-  lugar: "Jardín Magnolia",
-  direccion: "Atlixco, Puebla",
-  ubicacion: "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
-  icono: Wine,
+const evento = {
+  titulo: "Fiesta de Fin de Año 2026",
+  lugar: "Salón Coronado",
+  zona: "Polanco",
+  direccion:
+    "Bahía de Santa Bárbara 49, Miguel Hidalgo, C.P. 11300, Ciudad de México",
+  ubicacion:
+    "https://maps.app.goo.gl/RjxYtcmwrpkx57G16",
 };
 
 // ==========================================
@@ -61,321 +43,343 @@ const fadeUp = {
 };
 
 // ==========================================
-// TARJETA REUTILIZABLE
-// ==========================================
-
-const TarjetaEvento = ({
-  titulo,
-  hora,
-  lugar,
-  direccion,
-  ubicacion,
-  icono: Icono,
-}) => {
-  return (
-    <motion.article
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      whileHover={{ y: -5 }}
-      className="
-        relative
-        w-full max-w-xl
-        bg-[#F7F4ED]
-        border border-[#D8CFBF]
-        rounded-tl-[4rem]
-        rounded-br-[4rem]
-        rounded-tr-[1rem]
-        rounded-bl-[1rem]
-        shadow-[0_20px_60px_rgba(0,0,0,0.18)]
-        px-7 py-12
-        sm:px-12 sm:py-14
-        overflow-hidden
-      "
-    >
-      {/* DETALLE DECORATIVO SUPERIOR */}
-      <div
-        className="
-          absolute top-0 left-1/2
-          -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
-        "
-      />
-
-      {/* DECORACIÓN DE FONDO */}
-      <div
-        className="
-          absolute -top-16 -right-16
-          w-48 h-48
-          rounded-full
-          border border-[#B89B5E]/15
-          pointer-events-none
-        "
-      />
-
-      <div
-        className="
-          absolute -top-9 -right-9
-          w-32 h-32
-          rounded-full
-          border border-[#B89B5E]/15
-          pointer-events-none
-        "
-      />
-
-      <div className="relative z-10 flex flex-col items-center text-center">
-
-        {/* ICONO PRINCIPAL */}
-        <div
-          className="
-            w-20 h-20
-            rounded-full
-            border border-[#B89B5E]/40
-            bg-[#5E6650]/5
-            flex items-center justify-center
-            mb-6
-          "
-        >
-          <Icono
-            size={36}
-            strokeWidth={1.3}
-            className="text-[#B89B5E]"
-          />
-        </div>
-
-        {/* TÍTULO */}
-        <h2
-          className="
-            text-3xl sm:text-4xl
-            font-playfair
-            text-[#343A2D]
-            tracking-wide
-          "
-        >
-          {titulo}
-        </h2>
-
-        <div className="flex items-center gap-3 mt-6 mb-9">
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
-          <div className="w-2 h-2 rotate-45 border border-[#B89B5E]" />
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
-        </div>
-
-        {/* HORA */}
-        <div className="flex flex-col items-center">
-          <Clock3
-            size={21}
-            strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
-          />
-
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
-            Hora del evento
-          </p>
-
-          <p className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
-            {hora}
-          </p>
-        </div>
-
-        {/* SEPARADOR */}
-        <div className="w-16 h-[1px] bg-[#D8CFBF] my-9" />
-
-        {/* LUGAR */}
-        <div className="flex flex-col items-center">
-          <MapPin
-            size={22}
-            strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
-          />
-
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
-            Lugar
-          </p>
-
-          <h3 className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
-            {lugar}
-          </h3>
-
-          <p className="text-[#5E6650]/80 mt-4 leading-relaxed text-sm sm:text-base max-w-sm">
-            {direccion}
-          </p>
-        </div>
-
-        {/* BOTÓN GOOGLE MAPS */}
-        <motion.a
-          href={ubicacion}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
-          className="
-            group
-            mt-10
-            inline-flex items-center justify-center gap-3
-            bg-[#5E6650]
-            hover:bg-[#4B5340]
-            text-white
-            px-8 py-4
-            rounded-full
-            shadow-[0_8px_25px_rgba(94,102,80,0.25)]
-            transition-colors duration-300
-            text-sm font-medium tracking-wide
-          "
-        >
-          <MapPin size={18} strokeWidth={1.7} />
-
-          Ver ubicación
-
-          <ArrowUpRight
-            size={17}
-            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-          />
-        </motion.a>
-      </div>
-
-      {/* DETALLE DECORATIVO INFERIOR */}
-      <div
-        className="
-          absolute bottom-0 left-1/2
-          -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
-        "
-      />
-    </motion.article>
-  );
-};
-
-// ==========================================
 // COMPONENTE PRINCIPAL
 // ==========================================
 
-const Celebracion = () => {
+export default function Celebracion() {
   return (
     <section
+      id="ubicacion"
       className="
         relative
         w-full
-        bg-[#5E6650]
-        py-20 sm:py-28
-        px-5 sm:px-8
         overflow-hidden
+        bg-white
+        px-5 py-20
+        sm:px-8 sm:py-28
       "
+      style={{
+        fontFamily: "'Montserrat', sans-serif",
+      }}
     >
-      {/* DECORACIÓN DE FONDO */}
-      <div
-        className="
-          absolute top-20 -left-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
-          pointer-events-none
-        "
-      />
+      <div className="relative z-10 mx-auto max-w-5xl">
 
-      <div
-        className="
-          absolute bottom-20 -right-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
-          pointer-events-none
-        "
-      />
+        {/* =====================================
+            ENCABEZADO SOBRE FONDO BLANCO
+        ===================================== */}
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-
-        {/* ENCABEZADO */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mb-12 text-center sm:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+          {/* ICONO DECORATIVO */}
+          <div className="mb-5 flex items-center justify-center gap-4 text-[#C99A46]">
+            <span className="h-px w-12 bg-[#D9B56D]" />
 
-            <CalendarDays
-              size={19}
+            <MapPin
+              size={22}
               strokeWidth={1.4}
-              className="text-[#E7D7B1]"
             />
 
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+            <span className="h-px w-12 bg-[#D9B56D]" />
           </div>
 
-          <p className="uppercase tracking-[0.4em] text-[#E7D7B1] text-xs sm:text-sm font-semibold">
-            Nuestra celebración
-          </p>
-
-          <h2 className="text-4xl sm:text-5xl font-playfair text-[#F7F4ED] mt-5">
-            Un día inolvidable
+          {/* TÍTULO */}
+          <h2
+            className="
+              mt-5
+              text-5xl sm:text-6xl md:text-7xl
+              font-medium italic
+              text-[#07182F]
+            "
+            style={{
+              fontFamily:
+                "'Cormorant Garamond', serif",
+            }}
+          >
+            Ubicación
           </h2>
 
-          {/* FECHA */}
-          <div className="mt-12 flex flex-col items-center">
+          {/* SEPARADOR DORADO */}
+          <div className="mx-auto mt-6 flex items-center justify-center gap-3">
+            <span className="h-px w-14 bg-[#D9B56D]" />
 
-            <p className="text-[#E7D7B1] tracking-[0.35em] uppercase text-sm sm:text-base font-semibold">
-              {fechaCelebracion.dia}
+            <span
+              className="
+                h-2 w-2
+                rotate-45
+                border border-[#D9B56D]
+              "
+            />
+
+            <span className="h-px w-14 bg-[#D9B56D]" />
+          </div>
+        </motion.div>
+
+        {/* =====================================
+            TARJETA PRINCIPAL AZUL MARINO
+        ===================================== */}
+
+        <motion.article
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          whileHover={{ y: -4 }}
+          className="
+            relative
+            mx-auto
+            w-full max-w-2xl
+            overflow-hidden
+            rounded-[2rem]
+            border border-[#D9B56D]/50
+            bg-[#07182F]
+            px-5 py-12
+            text-center text-white
+            shadow-[0_20px_65px_rgba(0,0,0,0.20)]
+            sm:px-12 sm:py-16
+          "
+        >
+          {/* DETALLE DORADO SUPERIOR */}
+          <div
+            className="
+              absolute
+              left-1/2 top-0
+              h-[3px] w-40
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E8C67D]
+              to-transparent
+            "
+          />
+
+          {/* DECORACIONES DENTRO DE LA TARJETA */}
+          <div
+            className="
+              pointer-events-none
+              absolute -right-16 -top-16
+              h-48 w-48
+              rounded-full
+              border border-[#D9B56D]/15
+            "
+          />
+
+          <div
+            className="
+              pointer-events-none
+              absolute -right-9 -top-9
+              h-32 w-32
+              rounded-full
+              border border-[#D9B56D]/15
+            "
+          />
+
+          <div className="relative z-10 flex flex-col items-center">
+
+            {/* ICONO PRINCIPAL */}
+            <div
+              className="
+                mb-7
+                flex h-20 w-20
+                items-center justify-center
+                rounded-full
+                border border-[#D9B56D]/60
+                bg-[#D9B56D]/10
+              "
+            >
+              <MapPin
+                size={38}
+                strokeWidth={1.3}
+                className="text-[#E8C67D]"
+              />
+            </div>
+
+            {/* NOMBRE DEL SALÓN */}
+            <p
+              className="
+                mb-3
+                text-[11px]
+                font-medium
+                uppercase
+                tracking-[0.35em]
+                text-[#D9B56D]
+              "
+            >
+              Te esperamos en
             </p>
 
             <h3
               className="
-                text-7xl sm:text-8xl md:text-9xl
-                font-playfair
-                text-[#F7F4ED]
-                leading-none
-                mt-4
-                drop-shadow-lg
+                text-4xl sm:text-5xl md:text-6xl
+                font-semibold
+                leading-tight
+                text-white
               "
+              style={{
+                fontFamily:
+                  "'Cormorant Garamond', serif",
+              }}
             >
-              {fechaCelebracion.fecha}
+              {evento.lugar}
             </h3>
 
-            <p className="text-[#E7D7B1] text-xl sm:text-2xl tracking-[0.2em] mt-5">
-              {fechaCelebracion.mesAnio}
+            <p
+              className="
+                mt-2
+                text-3xl sm:text-4xl
+                italic
+                text-[#E8C67D]
+              "
+              style={{
+                fontFamily:
+                  "'Cormorant Garamond', serif",
+              }}
+            >
+              {evento.zona}
             </p>
 
+            {/* SEPARADOR */}
+            <div className="my-9 flex items-center gap-3">
+              <span className="h-px w-12 bg-[#D9B56D]/60" />
+
+              <Sparkles
+                size={18}
+                strokeWidth={1.4}
+                className="text-[#D9B56D]"
+              />
+
+              <span className="h-px w-12 bg-[#D9B56D]/60" />
+            </div>
+
+            {/* DIRECCIÓN */}
+            <div className="flex flex-col items-center">
+
+              <Building2
+                size={25}
+                strokeWidth={1.4}
+                className="mb-4 text-[#E8C67D]"
+              />
+
+              <p
+                className="
+                  text-[11px]
+                  font-medium
+                  uppercase
+                  tracking-[0.3em]
+                  text-[#D9B56D]
+                "
+              >
+                Dirección
+              </p>
+
+              <p
+                className="
+                  mt-4
+                  max-w-md
+                  text-sm sm:text-base
+                  font-light
+                  leading-8
+                  text-[#F1E9DA]
+                "
+              >
+                {evento.direccion}
+              </p>
+            </div>
+
+            {/* =====================================
+                BOTÓN GOOGLE MAPS
+            ===================================== */}
+
+            <motion.a
+              href={evento.ubicacion}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="
+                group
+                mt-11
+                inline-flex
+                w-full max-w-xs
+                items-center justify-center
+                gap-3
+                rounded-full
+                border border-[#F2D797]
+                bg-gradient-to-r
+                from-[#C99A46]
+                via-[#E8C67D]
+                to-[#C99A46]
+                px-6 py-4
+                text-sm font-semibold
+                tracking-wide
+                text-[#07182F]
+                shadow-[0_8px_30px_rgba(217,181,109,0.2)]
+                transition-all duration-300
+                hover:shadow-[0_10px_35px_rgba(217,181,109,0.35)]
+              "
+            >
+              <Navigation
+                size={19}
+                strokeWidth={1.7}
+              />
+
+              Ver ubicación
+
+              <ArrowUpRight
+                size={18}
+                className="
+                  transition-transform duration-300
+                  group-hover:translate-x-1
+                  group-hover:-translate-y-1
+                "
+              />
+            </motion.a>
           </div>
-        </motion.div>
 
-        {/* TARJETAS */}
-        <div
-          className="
-            grid grid-cols-1 lg:grid-cols-2
-            gap-10 lg:gap-8
-            items-stretch
-            justify-items-center
-          "
-        >
-          <TarjetaEvento {...ceremonia} />
-          <TarjetaEvento {...recepcion} />
-        </div>
+          {/* DETALLE DORADO INFERIOR */}
+          <div
+            className="
+              absolute
+              bottom-0 left-1/2
+              h-[3px] w-40
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E8C67D]
+              to-transparent
+            "
+          />
+        </motion.article>
 
-        {/* MENSAJE FINAL */}
+        {/* =====================================
+            MENSAJE FINAL SOBRE FONDO BLANCO
+        ===================================== */}
+
         <motion.p
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           className="
+            mt-12
             text-center
-            text-[#E7D7B1]
-            font-playfair italic
-            text-lg sm:text-xl
-            mt-16
+            text-xl sm:text-2xl
+            italic
+            text-[#07182F]
           "
+          style={{
+            fontFamily:
+              "'Cormorant Garamond', serif",
+          }}
         >
-          Cada momento será más especial con tu presencia.
+          Nos encantará compartir esta celebración contigo.
         </motion.p>
 
       </div>
     </section>
   );
-};
-
-export default Celebracion;
+}
